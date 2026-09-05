@@ -1,0 +1,4 @@
+<testsuite name="Mocha Tests" tests="2" failures="0" errors="0" skipped="0" timestamp="Sat, 05 Sep 2026 22:14:45 GMT" time="1.302">
+<testcase classname="React Application UI Tests" name="should load the React application" file="C:\Users\Sayan\Desktop\devopslab-experiment5-react\tests\test.js" time="0.485"/>
+<testcase classname="React Application UI Tests" name="should display the React welcome content" file="C:\Users\Sayan\Desktop\devopslab-experiment5-react\tests\test.js" time="0.062"/>
+</testsuite>

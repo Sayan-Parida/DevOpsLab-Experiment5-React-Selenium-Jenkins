@@ -24,9 +24,9 @@ pipeline {
                 bat '''
                     @echo off
                     echo Starting React application...
-                    powershell -NoProfile -Command "$env:BROWSER='none'; Start-Process 'C:\\Program Files\\nodejs\\npm.cmd' -ArgumentList 'start' -WorkingDirectory (Get-Location)"
+                    powershell -NoProfile -Command "$p = Start-Process cmd.exe -ArgumentList '/c','set BROWSER=none&& npm start' -WorkingDirectory (Get-Location) -WindowStyle Hidden -PassThru; Write-Host ('React process started with PID ' + $p.Id)"
                     echo Waiting for React application to start...
-                    timeout /t 20 /nobreak >nul
+                    timeout /t 20 /nobreak
                 '''
             }
         }

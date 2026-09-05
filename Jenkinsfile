@@ -24,9 +24,10 @@ pipeline {
                 bat '''
                     @echo off
                     echo Starting React application...
-                    powershell -NoProfile -Command "$p = Start-Process cmd.exe -ArgumentList '/c','set BROWSER=none&& npm start' -WorkingDirectory (Get-Location) -WindowStyle Hidden -PassThru; Write-Host ('React process started with PID ' + $p.Id)"
-                    echo Waiting for React application to start...
-                    timeout /t 20 /nobreak
+
+                    powershell -NoProfile -Command "$env:BROWSER='none'; $p = Start-Process 'C:\\Program Files\\nodejs\\npm.cmd' -ArgumentList 'start' -WorkingDirectory (Get-Location) -WindowStyle Hidden -PassThru; Write-Host ('React process started with PID ' + $p.Id); Start-Sleep -Seconds 20"
+
+                    echo React application startup wait completed.
                 '''
             }
         }
@@ -36,7 +37,9 @@ pipeline {
                 bat '''
                     @echo off
                     if not exist reports mkdir reports
+
                     echo Running Selenium UI tests...
+
                     "C:\\Program Files\\nodejs\\npx.cmd" mocha tests/test.js --reporter xunit --reporter-option "output=reports/test-results.xml"
                 '''
             }
